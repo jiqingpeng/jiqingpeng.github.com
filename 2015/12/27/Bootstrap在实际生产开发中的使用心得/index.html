@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言今天有个后台同学问我Bootstrap怎么用，一下给我问的有点懵，我和他说你一个后台的怎么还要写样式了吗？（这不是抢我们前端同学的饭碗吗？）然后我给了他一个www.guanwang.com,他说你直接给我jar包过来吧，然后我想起来他是一个后台同学又给他简单的解释了几句之后，他一句你给我几个demo我也就放弃了对他的说服教育，想想中华的传统美德不就是助人为乐吗，自己正好也总结一下自己在使用Bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bootstrap在实际生产开发中的使用心得">
+<meta property="og:url" content="http://yoursite.com/2015/12/27/Bootstrap在实际生产开发中的使用心得/index.html">
+<meta property="og:site_name" content="JQP&#39;s Blog">
+<meta property="og:description" content="前言今天有个后台同学问我Bootstrap怎么用，一下给我问的有点懵，我和他说你一个后台的怎么还要写样式了吗？（这不是抢我们前端同学的饭碗吗？）然后我给了他一个www.guanwang.com,他说你直接给我jar包过来吧，然后我想起来他是一个后台同学又给他简单的解释了几句之后，他一句你给我几个demo我也就放弃了对他的说服教育，想想中华的传统美德不就是助人为乐吗，自己正好也总结一下自己在使用Bo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-15T08:25:22.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bootstrap在实际生产开发中的使用心得">
+<meta name="twitter:description" content="前言今天有个后台同学问我Bootstrap怎么用，一下给我问的有点懵，我和他说你一个后台的怎么还要写样式了吗？（这不是抢我们前端同学的饭碗吗？）然后我给了他一个www.guanwang.com,他说你直接给我jar包过来吧，然后我想起来他是一个后台同学又给他简单的解释了几句之后，他一句你给我几个demo我也就放弃了对他的说服教育，想想中华的传统美德不就是助人为乐吗，自己正好也总结一下自己在使用Bo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/12/27/Bootstrap在实际生产开发中的使用心得/"/>
+
+
+
+
+
+  <title>Bootstrap在实际生产开发中的使用心得 | JQP's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JQP's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/27/Bootstrap在实际生产开发中的使用心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JQP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JQP's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Bootstrap在实际生产开发中的使用心得</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-27T16:17:27+08:00">
+                2015-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天有个后台同学问我Bootstrap怎么用，一下给我问的有点懵，我和他说你一个后台的怎么还要写样式了吗？（这不是抢我们前端同学的饭碗吗？）然后我给了他一个www.guanwang.com,他说你直接给我jar包过来吧，然后我想起来他是一个后台同学又给他简单的解释了几句之后，他一句你给我几个demo我也就放弃了对他的说服教育，想想中华的传统美德不就是助人为乐吗，自己正好也总结一下自己在使用Bootstrap的一些心得。</p>
+<h1 id="前端开发页面布局常用到的几种技能"><a href="#前端开发页面布局常用到的几种技能" class="headerlink" title="前端开发页面布局常用到的几种技能"></a>前端开发页面布局常用到的几种技能</h1><h2 id="1-Bootstrap"><a href="#1-Bootstrap" class="headerlink" title="1 Bootstrap"></a>1 Bootstrap</h2><p>我们公司在选择这个css框架的原因主要是因为我们的PC后台系统用到了好多Bootstrap Table表格比如一些表格的排序，模糊搜索，分页这些Bootstrap Table都已经写好了，就不用我们开发人员再手动的开发这些功能了.在微信公众号的开发中一开始也是使用着BootStrap的弹性盒子布局，在后来的开发中慢慢的用felx布局替换了.<br><a id="more"></a>  </p>
+<h2 id="2-rem"><a href="#2-rem" class="headerlink" title="2 rem"></a>2 rem</h2><p>这个技术说明白一些就是用一段js代码动态监控浏览器窗口的大小，当检测到窗口变化的时候动态改变根元素html的font-size,以此来做到传说中的响应各终端，在一开始flex的浏览器兼容性不是很好的时候rem曾是流行但是需要一些单位的转换，虽然后有好多工具例如Less,Sass这些css自动化工具但布局还是需要我们手动布局，目前强力推荐flex布局。  </p>
+<h2 id="3-flex"><a href="#3-flex" class="headerlink" title="3 flex"></a>3 flex</h2><p>2009年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能，还是比较推荐大家去码一下这个，常用的一些样式布局多写几个标签全部搞定。  </p>
+<h2 id="4-grid"><a href="#4-grid" class="headerlink" title="4 grid"></a>4 grid</h2><p>最新又出了一个网格布局号称已经可以横竖通吃，我也只简单地写了几个demo,目前浏览器兼容做的还不是很好，在以后可能是趋势，毕竟是浏览器开发支持的新语法，新技术层出不穷感觉身体被掏空，不是在学新技术，就是在学新技术的路上。</p>
+<h1 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h1><p>你的网站和应用能在 Bootstrap 的帮助下通过同一份代码快速、有效适配手机、平板、PC 设备，这一切都是 CSS 媒体查询（Media Query）的功劳，这句话是我在官网上摘下来的，我觉着其实BootStrap这个css框架最有用的部分也就是Media和栅格布局。 </p>
+<h2 id="Media介绍"><a href="#Media介绍" class="headerlink" title="Media介绍"></a>Media介绍</h2><p>css3的一个属性，使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。<br>@media针对不同的屏幕尺寸设置不同的样式，特别是设计响应式的页面，@media会根据你设置的样式动态监听。<br>当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染页面。<br>列子：如果文档宽度小于 300 像素则修改背景演示(background-color):<br><code>@media screen and (max-width: 300px) {
+body {
+background:red;
+}
+}</code><br>下面这个链接就是Media的详细简绍介绍</p>
+<h3 id="https-v3-bootcss-com-css-grid-media-queries"><a href="#https-v3-bootcss-com-css-grid-media-queries" class="headerlink" title="https://v3.bootcss.com/css/#grid-media-queries"></a><a href="https://v3.bootcss.com/css/#grid-media-queries" target="_blank" rel="noopener">https://v3.bootcss.com/css/#grid-media-queries</a></h3><p>bootstrap的css源码就是根据不同屏幕的大小做了不同的@media,有兴趣的同学可以去看看源码。 </p>
+<h2 id="实际工作中需要注意的几点"><a href="#实际工作中需要注意的几点" class="headerlink" title="实际工作中需要注意的几点"></a>实际工作中需要注意的几点</h2><p>具体的学习建议去看看文档(而且还是中文的)，你还要怎样，再提俩点实际工作中注意的问题</p>
+<h3 id="1在使用栅格布局的时候外边一定要包一个大盒子class-row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义"><a href="#1在使用栅格布局的时候外边一定要包一个大盒子class-row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义" class="headerlink" title="1在使用栅格布局的时候外边一定要包一个大盒子class=row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义"></a>1在使用栅格布局的时候外边一定要包一个大盒子class=row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义</h3><h3 id="2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是-medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。"><a href="#2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是-medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。" class="headerlink" title="2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是@medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。"></a>2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是@medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/15/简单谈谈vue-cli/" rel="prev" title="简单谈谈vue-cli">
+                简单谈谈vue-cli <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="JQP" />
+            
+              <p class="site-author-name" itemprop="name">JQP</p>
+              <p class="site-description motion-element" itemprop="description">有梦想谁都了不起</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiqingpeng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/59dc7d9ff265da432a7a8951" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-globe"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2200d9fa3246" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jqpblog.site" target="_blank" title="博客">
+                      
+                        <i class="fa fa-fw fa-globe"></i>博客</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端开发页面布局常用到的几种技能"><span class="nav-number">2.</span> <span class="nav-text">前端开发页面布局常用到的几种技能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Bootstrap"><span class="nav-number">2.1.</span> <span class="nav-text">1 Bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-rem"><span class="nav-number">2.2.</span> <span class="nav-text">2 rem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-flex"><span class="nav-number">2.3.</span> <span class="nav-text">3 flex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-grid"><span class="nav-number">2.4.</span> <span class="nav-text">4 grid</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bootstrap"><span class="nav-number">3.</span> <span class="nav-text">Bootstrap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Media介绍"><span class="nav-number">3.1.</span> <span class="nav-text">Media介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#https-v3-bootcss-com-css-grid-media-queries"><span class="nav-number">3.1.1.</span> <span class="nav-text">https://v3.bootcss.com/css/#grid-media-queries</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际工作中需要注意的几点"><span class="nav-number">3.2.</span> <span class="nav-text">实际工作中需要注意的几点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1在使用栅格布局的时候外边一定要包一个大盒子class-row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义"><span class="nav-number">3.2.1.</span> <span class="nav-text">1在使用栅格布局的时候外边一定要包一个大盒子class=row这个一定要加上，不然的话你所有的子级标签都需要给他的padding重新定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是-medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。"><span class="nav-number">3.2.2.</span> <span class="nav-text">2对于字体的问题，虽然我们在开发中号称是适配所有终端，但是字体这个问题还是不好做适配的，方法也是有的比如用rem或者是@medal监听，你把所有的终端型号都考虑到把你用到的字体大小情况也都全部考虑到然后就去开开心心的适配吧，半年时间怎么也做完了，我们的解决方案是直接写死，毕竟我们老大兼着产品哈哈，如果你遇到了让你适配字体的人的话你就可以磨一磨你饥渴难耐的大刀了，如果你有神马别的好的建议也可以给我留言。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JQP</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
