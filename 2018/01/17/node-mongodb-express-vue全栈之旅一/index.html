@@ -87,18 +87,18 @@
 <meta property="og:site_name" content="JQP&#39;s Blog">
 <meta property="og:description" content="mongodbMongoDB 是目前在IT行业非常流行的一种非关系型数据库(NoSql)，其灵活的数据存储方式备受当前IT从业人员的青睐。因为对于本人对于liunx不是很熟练这里主要讲如何在windows平台下安装MongoDB。 安装步骤一  mongodb官网下载地址https://www.mongodb.com/download-center#community   *二 依次点击下图标红的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/mongodb.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb1.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb2.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb3.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb5.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb4.png">
-<meta property="og:image" content="http://yoursite.com/img/mongodb6.png">
-<meta property="og:updated_time" content="2018-01-17T04:36:17.840Z">
+<meta property="og:image" content="http://yoursite.com/images/mongodb.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb1.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb2.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb3.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb5.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb4.png">
+<meta property="og:image" content="http://yoursite.com/images/mongodb6.png">
+<meta property="og:updated_time" content="2018-01-17T04:40:30.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node+mongodb+express+vue全栈之旅之mongodb">
 <meta name="twitter:description" content="mongodbMongoDB 是目前在IT行业非常流行的一种非关系型数据库(NoSql)，其灵活的数据存储方式备受当前IT从业人员的青睐。因为对于本人对于liunx不是很熟练这里主要讲如何在windows平台下安装MongoDB。 安装步骤一  mongodb官网下载地址https://www.mongodb.com/download-center#community   *二 依次点击下图标红的">
-<meta name="twitter:image" content="http://yoursite.com/img/mongodb.png">
+<meta name="twitter:image" content="http://yoursite.com/images/mongodb.png">
 
 
 
@@ -330,7 +330,7 @@
       
         <h1 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h1><p>MongoDB 是目前在IT行业非常流行的一种非关系型数据库(NoSql)，其灵活的数据存储方式备受当前IT从业人员的青睐。因为对于本人对于liunx不是很熟练这里主要讲如何在windows平台下安装MongoDB。</p>
 <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p><strong>一  mongodb官网下载地址</strong><br><a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a>  </p>
-<p><strong>*二 依次点击下图标红的标签</strong><br>  Community Server-&gt; Windows-&gt;Download(msi)<br><img src="/img/mongodb.png" alt="mongodb下载地址" title="mongodb下载地址"><br><a id="more"></a><br><strong>三 下载解压之后去配置系统环境变量</strong><br> 右击我的电脑-&gt; 属性-&gt;高级系统设置-&gt;属性-&gt;高级-&gt;环境变量-&gt;系统变量-&gt;编辑-&gt;path<br><img src="/img/mongodb1.png" alt="mongodb下载地址" title="mongodb下载地址"><br><img src="/img/mongodb2.png" alt="mongodb下载地址" title="mongodb下载地址"><br><img src="/img/mongodb3.png" alt="mongodb下载地址" title="mongodb下载地址"><br>在path的最后面添加上我们mongodb的文件地址，可以右击mongodb查看文件地址。我的是C:\Program Files\MongoDB\Server\3.0\bin<br><strong>四 启动mongodb数据库</strong><br>由于c盘是系统默认盘，什么东西都放在c盘是不好的，所以我的mongdb数据库放在里D盘，在D盘根目录上新建议mongodb文件夹，中，把c盘MongoDB\Server\3.0\bin目录下的所有文件拷贝到mongodb文件夹下，新建一个data文件夹 ，data文件夹中新建一个db文件夹。新建一个 mongodb.cmd文件<br><img src="/img/mongodb5.png" alt="mongodb.cmd" title="mongodb下载地址"><br>D盘mongodb目录结构如下图<br><img src="/img/mongodb4.png" alt="mongodb.cmd" title="mongodb下载地址"><br>双击或者用cmd打开mongodb.cmd出现下图就说明mongodb数据库安装成功了。<br><img src="/img/mongodb6.png" alt="mongodb.cmd" title="mongodb下载地址"> </p>
+<p><strong>*二 依次点击下图标红的标签</strong><br>  Community Server-&gt; Windows-&gt;Download(msi)<br><img src="/images/mongodb.png" alt="mongodb下载地址" title="mongodb下载地址"><br><a id="more"></a><br><strong>三 下载解压之后去配置系统环境变量</strong><br> 右击我的电脑-&gt; 属性-&gt;高级系统设置-&gt;属性-&gt;高级-&gt;环境变量-&gt;系统变量-&gt;编辑-&gt;path<br><img src="/images/mongodb1.png" alt="mongodb下载地址" title="mongodb下载地址"><br><img src="/images/mongodb2.png" alt="mongodb下载地址" title="mongodb下载地址"><br><img src="/images/mongodb3.png" alt="mongodb下载地址" title="mongodb下载地址"><br>在path的最后面添加上我们mongodb的文件地址，可以右击mongodb查看文件地址。我的是C:\Program Files\MongoDB\Server\3.0\bin<br><strong>四 启动mongodb数据库</strong><br>由于c盘是系统默认盘，什么东西都放在c盘是不好的，所以我的mongdb数据库放在里D盘，在D盘根目录上新建议mongodb文件夹，中，把c盘MongoDB\Server\3.0\bin目录下的所有文件拷贝到mongodb文件夹下，新建一个data文件夹 ，data文件夹中新建一个db文件夹。新建一个 mongodb.cmd文件<br><img src="/images/mongodb5.png" alt="mongodb.cmd" title="mongodb下载地址"><br>D盘mongodb目录结构如下图<br><img src="/images/mongodb4.png" alt="mongodb.cmd" title="mongodb下载地址"><br>双击或者用cmd打开mongodb.cmd出现下图就说明mongodb数据库安装成功了。<br><img src="/images/mongodb6.png" alt="mongodb.cmd" title="mongodb下载地址"> </p>
 
       
     </div>
@@ -361,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/17/node-mongodb-express-vue全栈之旅之express/" rel="next" title="node+mongodb+express+vue全栈之旅之express">
-                <i class="fa fa-chevron-left"></i> node+mongodb+express+vue全栈之旅之express
+              <a href="/2016/08/22/前后端分离与Node和NPM的那些事/" rel="next" title="前后端分离与Node和NPM的那些事">
+                <i class="fa fa-chevron-left"></i> 前后端分离与Node和NPM的那些事
               </a>
             
           </div>
@@ -370,6 +370,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/17/node-mongodb-express-vue全栈之旅之express/" rel="prev" title="node+mongodb+express+vue全栈之旅之express">
+                node+mongodb+express+vue全栈之旅之express <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
